@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad - CloudOptimizer AI</title>
+  <style>
+    body {
+      background-color: #020617;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 { color: #38bdf8; }
+    h1 { border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem; }
+    .badge {
+      background: #0369a1;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: bold;
+    }
+    ul { padding-left: 1.5rem; }
+    a { color: #38bdf8; text-decoration: none; }
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Política de Privacidad de CloudOptimizer AI</h1>
+  <p><strong>Última actualización:</strong> 9 de agosto de 2026</p>
+
+  <div class="card">
+    <p>
+      <strong>CloudOptimizer AI</strong> es un asistente inteligente de diagnóstico y gestión de espacio de almacenamiento en la nube para Google Workspace (Gmail, Google Drive y Google Photos). Respetamos plenamente la privacidad de nuestros usuarios y cumplimos rigurosamente con los requisitos de protección de datos de la Google Play Console y Google OAuth API User Data Policy.
+    </p>
+  </div>
+
+  <h2>1. Datos e Integración de Google APIs</h2>
+  <p>
+    Para ofrecer análisis de saturación en tiempo real, la aplicación utiliza permisos de **sola lectura** (Read-Only Scopes):
+  </p>
+  <ul>
+    <li><code>https://www.googleapis.com/auth/gmail.readonly</code>: Para identificar hilos con archivos adjuntos pesados mayores a 10MB.</li>
+    <li><code>https://www.googleapis.com/auth/drive.readonly</code>: Para calcular el uso total de cuota e identificar archivos no modificados en más de 2 años.</li>
+    <li><code>https://www.googleapis.com/auth/photoslibrary.readonly</code>: Para estimar el impacto en la cuota de álbumes y ráfagas de fotos duplicadas.</li>
+    <li><code>userinfo.profile</code> & <code>userinfo.email</code>: Para autenticar la sesión del usuario.</li>
+  </ul>
+
+  <h2>2. Garantía de Procesamiento de Datos y No Almacenamiento</h2>
+  <ul>
+    <li><strong>Sin lectura ni guardado de contenido personal:</strong> CloudOptimizer AI no lee, procesa ni almacena el cuerpo de tus correos electrónicos, el contenido de tus documentos ni tus fotos privadas.</li>
+    <li><strong>Solamente metadatos de tamaño y fecha:</strong> Únicamente leemos metadatos técnicos (tamaño en MB/GB, fecha de última modificación, tipo de archivo y cabeceras de asunto/remitente).</li>
+    <li><strong>Cero Venta o Transferencia de Datos:</strong> Tus datos de Google nunca se transfieren a terceros, redes publicitarias ni motores de entrenamiento de modelos sin consentimiento.</li>
+  </ul>
+
+  <h2>3. Seguridad e Inmutabilidad de las Claves API</h2>
+  <p>
+    Todas las comunicaciones con Google APIs se realizan mediante conexiones cifradas SSL/TLS (HTTPS). Los tokens de acceso se almacenan de manera encriptada en la base de datos de sesión y nunca son expuestos en el código fuente del cliente ni transferidos a redes públicas.
+  </p>
+
+  <h2>4. Control del Usuario y Revocación de Permisos</h2>
+  <p>
+    El usuario conserva el control absoluto en todo momento. Puedes cerrar sesión en cualquier momento desde el panel de la app o revocar el acceso de CloudOptimizer AI en cualquier instante desde tu panel de seguridad de Google: <a href="https://myaccount.google.com/permissions" target="_blank">Google Security Account Permissions</a>.
+  </p>
+
+  <h2>5. Contacto de Soporte</h2>
+  <p>
+    Si tienes alguna duda referente a esta política de privacidad o la gestión de datos en CloudOptimizer AI, puedes contactar a nuestro equipo técnico a través de:
+  </p>
+  <p><strong>Correo electrónico:</strong> soporte@cloudoptimizer.ai</p>
+</body>
+</html>

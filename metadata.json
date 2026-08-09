@@ -1,0 +1,6 @@
+{
+  "name": "CloudOptimizer AI",
+  "description": "AI-powered cloud storage diagnostic engine and tactical release planner for Google Drive, Gmail, and Google Photos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
