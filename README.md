@@ -1,25 +1,28 @@
-<<<<<<< HEAD
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+  <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# cloudoptimizer-ai
 
-This contains everything you need to run your app locally.
+Motor de optimización cloud con OAuth dinámico, Railway Deploy y arquitectura modular.
 
 View your app in AI Studio: https://ai.studio/apps/20622e2f-3262-4630-a37b-2ac1290c1d7a
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+**Prerequisitos:** Node.js
 
-
-1. Install dependencies:
+1. Instalar dependencias:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+
+2. Configurar variables de entorno (ver .env.example). Por ejemplo:
+   - `GEMINI_API_KEY` — clave para la integración con Gemini
+   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` — si usas OAuth
+
+3. Ejecutar la app:
    `npm run dev`
-=======
-# cloudoptimizer-ai
-Motor de optimización cloud con OAuth dinámico, Railway Deploy y arquitectura modular.
->>>>>>> 8c5d7dc8e67e3cb9cc3822d6134d32cd470077eb
+
+## Seguridad y licencia
+
+- Lee el documento de seguridad: SECURITY.md
+- Licencia: LICENSE (MIT)
