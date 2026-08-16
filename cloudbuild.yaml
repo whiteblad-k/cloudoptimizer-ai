@@ -1,0 +1,57 @@
+substitutions:
+  _AR_HOSTNAME: "asia-southeast1-docker.pkg.dev"
+  _AR_PROJECT_ID: "evo1ia-q7evomatrixchat"
+  _AR_REPOSITORY: "cloud-run-source-deploy"
+  _SERVICE_NAME: "cloudoptimizer-ai"
+  _DEPLOY_REGION: "asia-southeast1"
+
+steps:
+# 0) Pull previous image for Docker layer caching (Acceleration)
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      docker pull ${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest || true
+
+# 1) Build docker image with cache optimization
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '--cache-from'
+    - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest'
+    - '-t'
+    - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}'
+    - '-t'
+    - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest'
+    - '.'
+
+# 2) Push both tags to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest'
+
+# 3) Deploy to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      gcloud run deploy ${_SERVICE_NAME} \
+        --image=${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA} \
+        --region=${_DEPLOY_REGION} \
+        --platform=managed \
+        --project=${_AR_PROJECT_ID} \
+        --allow-unauthenticated
+
+images:
+- '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${SHORT_SHA}'
+- '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:latest'
+
+timeout: '1200s'
